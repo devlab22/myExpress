@@ -1,9 +1,5 @@
-
-const express = require('express');
-const path = require('path');
-const configs = require("./configs.json")
-const { networkInterfaces } = require('os');
-
+//const { networkInterfaces } = require('os');
+import {networkInterfaces} from 'os'
 
 function getHostIP() {
 
@@ -27,17 +23,9 @@ function getHostIP() {
     return results["en0"][0]
 }
 
-const app = express();
-const PORT = configs.PORT || 9000;
-const HOST = configs.HOST || "localhost";
+console.log(getHostIP())
 
-app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
-const HOST_IP = getHostIP()
-app.listen(PORT, HOST, (req,res) => {
-  console.log(`server on ${HOST_IP}:${PORT}`)
-});
+
+
